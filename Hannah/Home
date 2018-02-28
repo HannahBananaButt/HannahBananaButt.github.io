@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<style>
+body{
+color:turquoise;
+}
+</style>
+<html>
+<head>
+<title>Home</title>
+</head>
+<body>
+
+<h1>About me</h1>
+<p>Hi! My name is Hannah. I am 11 years old, and I love programming, cats, my family,<br>
+robotics, reading, playing the violin and learning.<br>
+I programmed this website with HTML and CSS, and I'm excited to share it with you.<br>
+Enjoy!</p>
+
+</body>
+</html>
