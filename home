@@ -1,0 +1,33 @@
+  <style>
+  
+  body{
+  background-color:#1274a5;
+
+  }
+   #Navigation{
+          display: inline;
+          margin:0px 3px;
+      }
+      #page {
+          max-width: 940px;
+          min-width:720px;
+          min-height: 1500px;
+          margin: 10px auto 10px auto;
+          padding:20px;
+          border: 6px double #000;
+          border-color: #44a112;
+          background-color:#ffffff;
+      }
+  </style>
+  <div class = "page">
+  <ul id= "Navigation">
+              <li><a href="home.html">Home</a></li></ul>
+<div id = "hi">
+<h1>Home</h1>
+<p>Hi there! I'm Hannah. I like to program, be in nature, pet our fuzzy kitty, do robotics, run, <br>
+do all my extra curricular activities, learn stuff, and I LOVE to read. I do karate, play the violin, <br>
+I participate in Girls on the Run, take sewing lessons, and I'm on a robotics team called the Electric Frogies.<br>
+I hope you like my website :)
+</p>
+</div>
+</div>
