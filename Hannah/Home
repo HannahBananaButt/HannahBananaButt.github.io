@@ -1,23 +1,8 @@
 <!DOCTYPE html>
 <style>
-body{
-background-color:teal;
-border-style: dotted;
-border-color: white;
-color:white;
-}
-</style>
-<html>
-<head>
-<title>Home</title>
-</head>
 <body>
-
-<h1>About me</h1>
-<p>Hi! My name is Hannah. I am 11 years old, and I love programming, cats, my family,<br>
-robotics, reading, playing the violin and learning.<br>
-I programmed this website with HTML and CSS, and I'm excited to share it with you.<br>
-Enjoy!</p>
-
+<div class="title">
+<h1>PEAR!</h1>
+</div>
 </body>
 </html>
