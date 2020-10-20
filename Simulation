@@ -1,0 +1,188 @@
+ var processing = new Processing(canvas, function(processing) {
+        processing.size(400, 400);
+        processing.background(0xFFF);
+
+        var mouseIsPressed = false;
+        processing.mousePressed = function () { mouseIsPressed = true; };
+        processing.mouseReleased = function () { mouseIsPressed = false; };
+
+        var keyIsPressed = false;
+        processing.keyPressed = function () { keyIsPressed = true; };
+        processing.keyReleased = function () { keyIsPressed = false; };
+
+        function getImage(s) {
+            var url = "https://www.kasandbox.org/programming-images/" + s + ".png";
+            processing.externals.sketch.imageCache.add(url);
+            return processing.loadImage(url);
+        }
+
+        // use degrees rather than radians in rotate function
+        var rotateFn = processing.rotate;
+        processing.rotate = function (angle) {
+            rotateFn(processing.radians(angle));
+        };
+
+        with (processing) {
+          noStroke();
+  var xPos = 100;
+  var yPos = 100;
+  var spacing = 5;
+  var sign = function(){
+      fill(247, 155, 42);
+      ellipse(xPos, yPos, 5,5);
+      if(xPos <= 300 && yPos === 100 ){
+       xPos= xPos + spacing;
+      }
+      if(yPos < 300 && xPos === 300){
+       yPos = yPos + spacing;
+      }
+      if(yPos === 300 && xPos >= 100){
+       xPos = xPos - spacing;
+      }
+      if(xPos === 100 && yPos > 100){
+       yPos = yPos - spacing;
+      }
+  };
+  //clouds constructor function
+  var clouds = function(x, y, w, h, color){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.color = color;
+  };
+  //cloud draw method
+  clouds.prototype.draw = function() {
+      fill(this.color);
+      ellipse(this.x,this.y,this.w, this.h);
+  };
+  //clouds move method
+  clouds.prototype.move = function(){
+      if(this.x<450){
+       this.x= this.x+0.5;
+      }
+      if(this.x>=450){
+       this.x = 0;
+      }
+  };
+  //create array and push cloud instances into
+  var allTheClouds = [];
+  for(var i = 0; i<4; i++){
+      allTheClouds.push(new clouds (random(143,400),
+                                    random(30,90),
+                                    random(190,242),
+                                    random(5,15),
+                                    color(102, 97, 97, 120)
+                                    )
+                      );
+  }
+  //pumpkin constructor function
+  var pumpkin = function(x,y,w,h,color1,color2){
+    this.x = x;
+    this.y = y;
+    this.w = w;
+    this.h = h;
+    this.color1 = color1;
+    this.color2 = color2;
+  };
+  //pumpkin draw method
+  pumpkin.prototype.draw = function() {
+       noStroke();
+      fill(this.color1);
+      rect(this.x*1.14, this.y*0.96, this.w/8, this.h/7);
+      stroke(224, 113, 29);
+      fill(this.color2);
+      rect(this.x, this.y, this.w, this.h, 30);
+      noStroke();
+  };
+  //create array and push new pumpkins into array
+  var allThePumpkins = [];
+  for(var i = 0; i < 2; i++){
+      allThePumpkins.push(new pumpkin(random(148,317),
+                                      random(292, 335),
+                                      random(70,90),
+                                      random(80,100),
+                                      color(42, 135, 34),
+                                      color(random(230,250), 162, 32)
+                                      )
+                          );
+  }
+  //constructor function
+  var fallLeaf = function(x,y,color, speed){
+      this.x=x;
+      this.y=y;
+      this.color=color;
+      this.speed=speed;
+  };
+  //draw method
+  fallLeaf.prototype.draw = function() {
+      fill(this.color);
+      ellipse(this.x, this.y, 34, 14);
+  };
+  //drop method
+  fallLeaf.prototype.drop = function(){
+      if(this.y<250){
+          this.y= this.y+this.speed;
+          this.x= this.x+this.speed/4;
+      }
+      if(this.y>=250 && this.y<300){
+          this.y= this.y+this.speed;
+          this.x= this.x-this.speed/4;
+      }
+      if(this.y>=300 && this.y<365){
+          this.y= this.y+this.speed;
+          this.x= this.x+this.speed/4;
+      }
+  };
+  //create array & push new instances into array
+  var allTheLeaves = [];
+  for(var i = 0; i <208; i++){
+      allTheLeaves.push(new fallLeaf(random(0,151),
+                                    random(0,175),
+                                    color(random(200,255),random(35,110),0),
+                                    0.005
+                                    )
+                      );
+  }
+  //draw function
+  draw = function() {
+          noStroke();
+          background(16, 67, 84);
+          //moon
+          fill(230, 255, 5);
+          ellipse(334, 66, 100,100);
+          fill(102, 51, 0);
+           rect(0, 0, 65, 400);
+           triangle(65, 380, 65, 400, 80, 400);
+          for(var i in allTheClouds){
+           allTheClouds[i].draw();
+           allTheClouds[i].move();
+          }
+          for(var i in allThePumpkins){
+           allThePumpkins[i].draw();
+          }
+          for(var i in allTheLeaves){
+           allTheLeaves[i].draw();
+           allTheLeaves[1].drop();
+           allTheLeaves[2].drop();
+           allTheLeaves[3].drop();
+           allTheLeaves[4].drop();
+       }
+       //grass
+       for(var i=0; i<403; i+=4){
+      stroke(0, 153, 51);
+      strokeWeight(3);
+      noFill();
+      bezier(i,400,i-10, 380, i+10, 380, i, 370);
+      stroke(0, 77, 26);
+      bezier(i+5,400,i-4, 375, i+8, 375, i+3, 370);
+       }
+  };
+
+//Insert Khan Academy program here
+ if (typeof draw !== 'undefined') processing.draw = draw;
+    });
+  </script>
+</body>
+</html>
+</html>
